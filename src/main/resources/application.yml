@@ -1,0 +1,22 @@
+spring:
+    kafka:
+        bootstrap-servers: localhost:9092
+        producer:
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.apache.kafka.common.serialization.StringSerializer
+          acks: 1
+        properties:
+          request.timeout.ms: 200000
+          session.timeout.ms: 120000
+        listener:
+          concurrency: 10
+          poll-timeout: 1000
+          ack-mode: batch
+        consumer:
+          key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          enable-auto-commit: true
+          group-id: order-center
+          auto-commit-interval: 5000
+          fetch-max-wait: 120000
+          max-poll-records: 10
